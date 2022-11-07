@@ -5,8 +5,10 @@
 
 
 int main() {
-   setuid(0);
-   setuid(2);
-    perror();
+   if(setuid(2) == -1){
+      perror("Error: ");
+   }
+   else
+      printf("Correct.");
    return 1;
 }
