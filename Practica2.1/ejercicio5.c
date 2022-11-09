@@ -19,4 +19,6 @@ int main() {
   }
   else 
     printf("Error: %d, %s\n", errno, strerror(errno));
+   
+   return 0;
 }
