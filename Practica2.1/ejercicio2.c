@@ -6,7 +6,6 @@
 
 
 int main() {
-    int x;
    if(setuid(2) == -1){
        printf("Error: %d, %s\n", errno, strerror(errno));
       //perror("Error: ");
