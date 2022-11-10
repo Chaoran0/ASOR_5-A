@@ -16,9 +16,9 @@ int main() {
   //struct passwd *getpwuid(uid_t uid);
   struct passwd *pwd;
   pwd = getpwuid(getuid());
-	printf("Username: %s\n", pwd->pw_name);
-	printf("Home directory: %s\n", pwd->pw_dir);
-	printf("User info: %s\n", pwd->pw_gecos);
+  printf("Username: %s\n", pwd->pw_name);
+  printf("Home directory: %s\n", pwd->pw_dir);
+  printf("User info: %s\n", pwd->pw_gecos);
   
   if (geteuid() != getuid())
 	  printf("bit setuid: Activado \n");
