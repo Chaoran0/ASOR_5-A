@@ -14,7 +14,7 @@ int main(){
 	time_t timep;
 	struct tm *local;
 	
-	t = time(NULL);
+	timep = time(NULL);
 	local = localtime(&timep);
 	
 	printf("Año: %d\n", local->tm_year+1900);
