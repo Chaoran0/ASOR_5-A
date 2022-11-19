@@ -1,1 +1,7 @@
-
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls -l
+total 52
+-rwxrwxrwx 1 codespace codespace 16840 Nov 19 22:16 ejecicio5
+-rw-rw-rw- 1 codespace root       3042 Nov 19 21:59 ejercicio1.txt
+-rw-rw-rw- 1 codespace root          1 Nov 19 21:59 ejercicio2.txt
+-rwxrwxrwx 1 codespace codespace 19776 Nov 19 22:07 ejercicio5
+-rw-rw-rw- 1 codespace root        585 Nov 19 22:16 ejercicio5.c
