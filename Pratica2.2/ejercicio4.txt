@@ -1,0 +1,26 @@
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ mkdir ejr4Prueba
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls
+ejecicio5  ejer5.txt  ejercicio1.txt  ejercicio2.txt  ejercicio3.txt  ejercicio5  ejercicio5.c  ejercicio5.txt  ejr4Prueba
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls -l
+total 60
+-rwxrwxrwx  1 codespace codespace 16840 Nov 19 22:16 ejecicio5
+-rw-r--r-x  1 codespace codespace     0 Nov 19 22:25 ejer5.txt
+-r-xr-----  1 codespace root       3042 Nov 19 21:59 ejercicio1.txt
+-rw-rw-rw-  1 codespace root          1 Nov 19 21:59 ejercicio2.txt
+-rw-rw-rw-  1 codespace codespace   900 Nov 19 22:24 ejercicio3.txt
+-rwxrwxrwx  1 codespace codespace 16880 Nov 19 22:28 ejercicio5
+-rw-rw-rw-  1 codespace root        572 Nov 19 22:29 ejercicio5.c
+-rw-r--r-x  1 codespace codespace     0 Nov 19 22:28 ejercicio5.txt
+drwxrwxrwx+ 2 codespace codespace  4096 Nov 19 23:06 ejr4Prueba
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ chmod -x ejr4Prueba
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls -l
+total 60
+-rwxrwxrwx  1 codespace codespace 16840 Nov 19 22:16 ejecicio5
+-rw-r--r-x  1 codespace codespace     0 Nov 19 22:25 ejer5.txt
+-r-xr-----  1 codespace root       3042 Nov 19 21:59 ejercicio1.txt
+-rw-rw-rw-  1 codespace root          1 Nov 19 21:59 ejercicio2.txt
+-rw-rw-rw-  1 codespace codespace   900 Nov 19 22:24 ejercicio3.txt
+-rwxrwxrwx  1 codespace codespace 16880 Nov 19 22:28 ejercicio5
+-rw-rw-rw-  1 codespace root        572 Nov 19 22:29 ejercicio5.c
+-rw-r--r-x  1 codespace codespace     0 Nov 19 22:28 ejercicio5.txt
+drw-rw-rw-+ 2 codespace codespace  4096 Nov 19 23:06 ejr4Prueba
