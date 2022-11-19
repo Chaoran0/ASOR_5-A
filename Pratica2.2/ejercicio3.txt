@@ -1,0 +1,25 @@
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls -l
+total 52
+-rwxrwxrwx 1 codespace codespace 16840 Nov 19 22:16 ejecicio5
+-rw-rw-rw- 1 codespace root       3042 Nov 19 21:59 ejercicio1.txt
+
+
+
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls -l
+total 52
+-rwxrwxrwx 1 codespace codespace 16840 Nov 19 22:16 ejecicio5
+-r-xr----- 1 codespace root       3042 Nov 19 21:59 ejercicio1.txt
+
+
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ chmod u=rx,g=r,o= ejercicio1.txt
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main) $ ls -l
+total 56
+-rwxrwxrwx 1 codespace codespace 16840 Nov 19 22:16 ejecicio5
+-r-xr----- 1 codespace root       3042 Nov 19 21:59 ejercicio1.txt
+
+
+chmod [OPTION]... MODE[,MODE]... FILE...
+chmod [OPTION]... OCTAL-MODE FILE...
+chmod [OPTION]... --reference=RFILE FILE...
+
+Each MODE is of the form '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'.
