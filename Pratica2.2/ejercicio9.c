@@ -20,12 +20,14 @@ int main(int argc, char *argv[]){
 		printf("ERROR: Argumento incorrecto.\n");
 		exit(1);
 	}
+//unsigned int minor(dev_t dev);
+//unsigned int major(dev_t dev);
+  printf("MAJOR: %d\n", minor(buffer.st_dev));//st_dev: ID of device containing file 
+  printf("MINOR: %d\n", major(buffer.st_dev));
 
-
- 
-  fd = open(argv[1], O_WRONLY|O_CREAT|O_TRUNC, 0777);
-
-
+  printf("I-Node: %d\n",buffer.st_ino); //st_ino: Inode number 
+	
+  printf("MODE: %d\n",buff.st_mode);//st_mode: File type and mode
 
   close(fd);
 
