@@ -1,3 +1,7 @@
+@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ stat -t prueba7.txt
+prueba7.txt 0 0 81ff 1000 1000 700 1443079 1 0 0 1668963887 1668963887 1668963887 0 4096
+
+
 NAME
        stat - display file or file system status
 
