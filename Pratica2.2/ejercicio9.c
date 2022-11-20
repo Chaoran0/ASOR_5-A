@@ -27,7 +27,16 @@ int main(int argc, char *argv[]){
 
   printf("I-Node: %d\n",buffer.st_ino); //st_ino: Inode number 
 	
-  printf("MODE: %d\n",buff.st_mode);//st_mode: File type and mode
+  printf("MODE: %d\n",buffer.st_mode);//st_mode: File type and mode
+
+  //S_ISLNK(m): Comprueba si es un enlace simbólico
+  if(S_ISLNK(buffer.st_mode))
+	  printf("%s es un enlace simbólico.\n", argv[1]);
+  else if(S_ISREG(buffer.st_mode))//S_ISREG(m): Comprueba si es un fichero normal
+	  printf("%s es un un fichero normal.\n", argv[1]);
+  else if(S_ISDIR(buffer.st_mode))//S_ISDIR(m): Comprueba si es un directorio
+	  printf("%s es un un directorio.\n", argv[1]);
+
 
   close(fd);
 
