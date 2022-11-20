@@ -11,26 +11,21 @@ int main(int argc, char *argv[]){
   char buffer[1024];
   int numbytes;
  
-  mode_t prev = umask(750);
+  mode_t mask = umask(0027);
 
   if (argc != 2){
-    printf("Fallo en comando\n");
+    printf("Uso: %s origen destino\n", argv[0]);
     exit(1);
   }
  
   fd = open(argv[1], O_WRONLY|O_CREAT|O_TRUNC, 0777);
   
-  printf("Resultado: %d\n", fd);
+  mode_t mask2 = umask(mask);
+
+    printf("Umask: %i\n", mask2);
+
+
   close(fd);
-  
-
-  /*const char PATH[]="/workspaces/ASOR_5-A/Pratica2.2/ejer5.txt";
-
-  int df = open(PATH, O_CREAT, 0645);
-
-  printf("Resultado = %i\n", df);
- 
-  close(df);*/
 
   return 0;
 }
