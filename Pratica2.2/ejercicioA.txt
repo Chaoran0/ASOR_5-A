@@ -1,0 +1,19 @@
+
+ln -s file link
+
+ln -s $PWD/ejer1.c pr6/4.txt
+usuario_local@pto0519:~/Descargas$ ls -l pr6
+total 0
+lrwxrwxrwx 1 usuario_local users 30 nov 21 10:32 4.txt -> /home/hlocal/Descargas/ejer1.c
+-rw-r----- 1 usuario_local users  0 nov 21 10:22 algo.txt
+lrwxrwxrwx 1 usuario_local users  8 nov 21 10:29 ejer1.c -> algo.txt
+lrwxrwxrwx 1 usuario_local users  7 nov 21 10:23 ejer1.txt -> ejer1.c
+
+
+usuario_local@pto0519:~/Descargas$ ln -s ../ejer1.c pr6/4.txt
+usuario_local@pto0519:~/Descargas$ ls -l pr6
+total 0
+lrwxrwxrwx 1 usuario_local users 10 nov 21 10:32 4.txt -> ../ejer1.c
+-rw-r----- 1 usuario_local users  0 nov 21 10:22 algo.txt
+lrwxrwxrwx 1 usuario_local users  8 nov 21 10:29 ejer1.c -> algo.txt
+lrwxrwxrwx 1 usuario_local users  7 nov 21 10:23 ejer1.txt -> ejer1.c
