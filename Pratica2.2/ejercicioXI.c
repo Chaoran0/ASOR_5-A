@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
         exit(1);
     }
     
-    fd = open(argv[1], O_CREAT|O_WRONLY|O_WRONLY, 0777);
+    fd = open(argv[1], O_CREAT|O_WRONLY|O_WRONLY, 0777);//crear si no existe
 
     struct stat buffer;
     int statint = stat(argv[1], &buffer);
@@ -25,13 +25,13 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 
-    char* regular = malloc(sizeof(char)*(5 + strlen(argv[1])));
-	char* symbolic = malloc(sizeof(char)*(5 + strlen(argv[1])));
-	strcpy(regular, argv[1]);
-	strcpy(symbolic, argv[1]);
-
-	regular = strcat(regular, ".hard");
-	symbolic = strcat(symbolic, ".sym");
+    char* regular = malloc(sizeof(char)*(5 + strlen(argv[1])));//reservar memoria
+    char* symbolic = malloc(sizeof(char)*(5 + strlen(argv[1])));
+    strcpy(regular, argv[1]);//copiar el contenido de argv[1]
+    strcpy(symbolic, argv[1]);
+	
+    regular = strcat(regular, ".hard");//ponerle la extensión 
+    symbolic = strcat(symbolic, ".sym");
 
     if(S_ISREG(buffer.st_mode)){
         printf("%s es un un fichero normal.\n", argv[1]);
