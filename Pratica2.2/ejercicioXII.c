@@ -20,10 +20,11 @@ int main(int argc, char *argv[]){
     //int dup(int oldfd);
     //int dup2(int oldfd, int newfd);
 
-    newfd = dup(oldfd);
-    printf("Redireccionamiento dup: %d\n", newfd);
-    int result = dup2(oldfd, result);
-    printf("Redireccionamiento dup2: %d\n", result);
+    if(dup(oldfd) == -1)
+        printf("Error en la duplicacion.\n");
+
+    if(dup2(oldfd, 1) == -1)
+        printf("Error en la duplicacion 2.\n");
 
     return 0;
 }
