@@ -8,13 +8,11 @@ int main(int argc, char *argv[]){
  
   /* Variables */
   int fd;
-  char buffer[1024];
-  int numbytes;
  
   mode_t mask = umask(0027);
 
   if (argc != 2){
-    printf("Uso: %s origen destino\n", argv[0]);
+    printf("Error: pon el nombre del fichero a abrir.\n");
     exit(1);
   }
  
@@ -22,10 +20,11 @@ int main(int argc, char *argv[]){
   
   mode_t mask2 = umask(mask);
 
-    printf("Umask: %i\n", mask2);
+  printf("Umask: %d\n", mask2);
 
 
   close(fd);
 
   return 0;
 }
+
