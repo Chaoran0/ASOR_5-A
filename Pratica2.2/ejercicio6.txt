@@ -1,13 +1,19 @@
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ umask 0027
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main) $ touch ejercicio6.txt
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ mkdir ejer6
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls
-ejer6  ejercicio1.txt  ejercicio2.txt  ejercicio3.txt  ejercicio4.txt  ejercicio5.c  ejercicio6.txt
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ 
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ ls -l
-total 24
-drwxrwxrwx+ 2 codespace codespace 4096 Nov 20 16:48 ejer6
--rw-rw-rw-  1 codespace root      3042 Nov 20 16:37 ejercicio1.txt
+usuario_local@pto0519:~/Descargas$ umask 0027
+usuario_local@pto0519:~/Descargas$ touch pr6.txt
+usuario_local@pto0519:~/Descargas$ ls -l
+total 28
+drwxr-xr-x 6 usuario_local users  4096 nov  7 09:53 ASOR_5-A
+-rwxr-xr-x 1 usuario_local users 16136 nov  7 10:42 ejer1
+-rw-r--r-- 1 usuario_local users   291 nov  7 10:42 ejer1.c
+-rw-r--r-- 1 usuario_local users  1672 nov  7 10:14 ejer1.o
+-rw-r----- 1 usuario_local users     0 nov 21 09:29 pr6.txt
 
-@Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ umask
-0027
+usuario_local@pto0519:~/Descargas$ mkdir pr6
+usuario_local@pto0519:~/Descargas$ ls -l
+total 32
+drwxr-xr-x 6 usuario_local users  4096 nov  7 09:53 ASOR_5-A
+-rwxr-xr-x 1 usuario_local users 16136 nov  7 10:42 ejer1
+-rw-r--r-- 1 usuario_local users   291 nov  7 10:42 ejer1.c
+-rw-r--r-- 1 usuario_local users  1672 nov  7 10:14 ejer1.o
+drwxr-x--- 2 usuario_local users  4096 nov 21 09:31 pr6
+-rw-r----- 1 usuario_local users     0 nov 21 09:29 pr6.txt
