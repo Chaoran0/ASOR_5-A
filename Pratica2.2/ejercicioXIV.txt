@@ -1,0 +1,18 @@
+1: POSIX  ADVISORY  WRITE 38018 103:09:530826 1073741824 1073742335
+2: POSIX  ADVISORY  WRITE 38018 103:09:529093 0 EOF
+3: POSIX  ADVISORY  READ 5095 103:09:527191 128 128
+4: POSIX  ADVISORY  READ 5095 103:09:528530 1073741826 107374233
+  
+
+/proc/locks no es un comando. En su lugar, es un archivo en el sistema de archivos virtual procfs. El archivo contiene todos los bloqueos de archivos actuales. El comando lslocks también se basa en este archivo para generar la lista.
+
+2:  POSIX ADVISORY  WRITE 38018 103:09:529093 0 EOF
+-1- --2-- ----3---  --4-- --5-- ------6----- -7- -8-
+
+1.La primera columna es un número de secuencia.
+2.El segundo campo indica la clase del bloqueo utilizado, como FLOCK (de la llamada al sistema flock) o POSIX (de la llamada al sistema lockf, fcntl).
+3.Esta columna es para el tipo de bloqueo. Puede tener dos valores: ADVISORY o MANDATORY.
+4.El cuarto campo revela si el bloqueo es de ESCRITURA o de LECTURA.
+5.Luego tenemos el ID del proceso que tiene el bloqueo.
+6.Este campo contiene una cadena de valores separada por dos puntos, que muestra el id del archivo bloqueado en el formato "major-device:minor-device:inode".
+7.Esta columna, junto con la última, muestra el inicio y el final de la región bloqueada del archivo que se está bloqueando. En esta fila de ejemplo, todo el archivo está bloqueado.
