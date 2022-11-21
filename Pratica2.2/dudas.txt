@@ -1,1 +1,0 @@
-ejer6 y ejer7: parece no funciona el umask, no ha limitado los permisos, ¿tengo que cambiar el usuario porque he creado con root?
