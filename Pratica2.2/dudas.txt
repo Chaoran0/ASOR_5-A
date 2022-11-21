@@ -1,1 +1,1 @@
-ejercicio17.c: no sé por qué no identifica los ficheros con enlaces simbólicos.
+ejercicioXVII.c: no sé por qué no identifica los ficheros con enlaces simbólicos.
