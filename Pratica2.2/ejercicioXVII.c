@@ -4,7 +4,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <dirent.h>
+#include <string.h>
 
 int main(int argc, char *argv[]){
     //int lockf(int fd, int cmd, off_t len);
@@ -25,8 +26,49 @@ int main(int argc, char *argv[]){
     }
     else{
         if(S_ISDIR(buffer.st_mode)){
-            printf("La ruta %s es de un directorio\n");
+            printf("La ruta %s es de un directorio\n", argv[1]);
+            DIR *diropen = opendir(argv[1]);
+            struct dirent *now = readdir(diropen);
+            while (now != NULL){
+                
+                char *path = (char *) malloc(sizeof(char)*(strlen(argv[1]) + strlen(now->d_name) + 3));//or char path[PATH_MAX];
 
+                status = stat(now->d_name, &buffer);
+                if(S_ISLNK(buffer.st_mode)){
+                    strcpy(path, argv[1]);
+                    strcat(path, "/");
+                    strcat(path, now->d_name);
+                    printf("%s es un fichero simbólico: ", path);
+
+                    char buff[_PC_PATH_MAX];
+                    readlink(path, buff, (size_t)_PC_PATH_MAX);
+                    printf("%s -> %s\n", now->d_name, buff);
+                    //free(buff);
+                }
+                else if(S_ISREG(buffer.st_mode)){
+                    strcpy(path, argv[1]);
+                    strcat(path, "/");
+                    strcat(path, now->d_name);
+                    printf("%s es un fichero regular: ", path);
+                    printf("%s*\n", now->d_name);
+                }
+                else if(S_ISDIR(buffer.st_mode)){
+                    strcpy(path, argv[1]);
+                    strcat(path, "/");
+                    strcat(path, now->d_name);
+                    printf("%s es un directorio: ", path);
+                    printf("%s/\n", now->d_name);
+                }
+                else printf("Error: %s", now->d_name);
+                free(path);
+                
+                now = readdir(diropen);
+            }
+            
+        }
+        else {
+            perror("Error: La ruta no es de un directorio\n");
+            exit(EXIT_FAILURE);
         }
 
     }
