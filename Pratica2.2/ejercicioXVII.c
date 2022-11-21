@@ -32,9 +32,9 @@ int main(int argc, char *argv[]){
             while (now != NULL){
                 
                 char *path = (char *) malloc(sizeof(char)*(strlen(argv[1]) + strlen(now->d_name) + 3));//or char path[PATH_MAX];
-
-                status = stat(now->d_name, &buffer);
-                if(S_ISLNK(buffer.st_mode)){
+                struct stat estatus;
+                stat(now->d_name, &estatus);
+                if(S_ISLNK(estatus.st_mode)){
                     strcpy(path, argv[1]);
                     strcat(path, "/");
                     strcat(path, now->d_name);
@@ -45,14 +45,14 @@ int main(int argc, char *argv[]){
                     printf("%s -> %s\n", now->d_name, buff);
                     //free(buff);
                 }
-                else if(S_ISREG(buffer.st_mode)){
+                else if(S_ISREG(estatus.st_mode)){
                     strcpy(path, argv[1]);
                     strcat(path, "/");
                     strcat(path, now->d_name);
                     printf("%s es un fichero regular: ", path);
                     printf("%s*\n", now->d_name);
                 }
-                else if(S_ISDIR(buffer.st_mode)){
+                else if(S_ISDIR(estatus.st_mode)){
                     strcpy(path, argv[1]);
                     strcat(path, "/");
                     strcat(path, now->d_name);
