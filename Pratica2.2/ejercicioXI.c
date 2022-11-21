@@ -2,34 +2,51 @@
 #include <fcntl.h>           /* Definition of AT_* constants */
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+//#include <sys/sysmacros.h>
+
 
 int main(int argc, char *argv[]){
     int fd;
 
     if (argc != 2){
-        printf("Poner el nombre del archivo a crear/leer/escribir\n");
+        printf("Poner la ruta del fichero para realizar el enlace\n");
         exit(1);
     }
     
     fd = open(argv[1], O_CREAT|O_WRONLY|O_WRONLY, 0777);
 
-    link(argv[1], "x.txt");
-    symlink(argv[1], "y.txt");
+    struct stat buffer;
+    int statint = stat(argv[1], &buffer);
+    if (statint == -1) {
+		printf("ERROR: Argumento incorrecto.\n");
+		exit(1);
+	}
 
+    char* regular = malloc(sizeof(char)*(5 + strlen(argv[1])));
+	char* symbolic = malloc(sizeof(char)*(5 + strlen(argv[1])));
+	strcpy(regular, argv[1]);
+	strcpy(symbolic, argv[1]);
+
+	regular = strcat(regular, ".hard");
+	symbolic = strcat(symbolic, ".sym");
+
+    if(S_ISREG(buffer.st_mode)){
+        printf("%s es un un fichero normal.\n", argv[1]);
+        if(symlink(argv[1], symbolic) == -1)
+            printf("Error: no se ha creado el enlace simbolico\n");
+        else 
+            printf("Enlace simbolico creado: %s\n", symbolic);
+        
+        if(link(argv[1], regular) == -1)
+            printf("Error: no se ha creado el enlace rígido\n");
+        else 
+            printf("Enlace rígido creado: %s\n", regular);
+    }
+    else 
+        printf("%s no es un fichero normal.\n", argv[1]);
 
     return 0;
 }
-
-/*
-usuario_vms@portatil:~/Descargas$ gcc -o ejer ejer.c
-usuario_vms@portatil:~/Descargas$ ./ejer 1.txt
-usuario_vms@portatil:~/Descargas$ ls -l
-total 31284
--rw-r--r-- 3 usuario_vms users       17 nov 21 12:09 1.txt
--rwxr-xr-x 1 usuario_vms users    16104 nov 21 12:09 ejer
--rw-r--r-- 1 usuario_vms users      424 nov 21 12:09 ejer.c
--rw-r--r-- 3 usuario_vms users       17 nov 21 12:09 x.txt
-lrwxrwxrwx 1 usuario_vms users        5 nov 21 12:10 y.txt -> 1.txt
-
-x.txt e y.txt no existían
-*/
