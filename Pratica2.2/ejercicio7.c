@@ -18,13 +18,11 @@ int main(int argc, char *argv[]){
  
   fd = open(argv[1], O_WRONLY|O_CREAT|O_TRUNC, 0777);
   
-  mode_t mask2 = umask(mask);
 
-  printf("Umask: %d\n", mask2);
+  printf("Umask: %o\n", mask2);
 
 
   close(fd);
 
   return 0;
 }
-
