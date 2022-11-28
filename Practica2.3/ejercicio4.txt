@@ -27,3 +27,5 @@ usuario_local@pto0519:~/Descargas/ASOR_5-A/Practica2.3$ ps -l
 F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
 0 S  1555  166075  109369  0  80   0 -  3537 do_wai pts/4    00:00:00 bash
 4 R  1555  177988  166075  0  80   0 -  3841 -      pts/4    00:00:00 ps
+
+Cada proceso tiene un identificador único (Process ID, PID) y, además, registra el proceso que lo creó (Parent Process ID, PPID)
