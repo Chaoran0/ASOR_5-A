@@ -1,0 +1,29 @@
+ps (process status)
+lista los procesos con su PID, datos de usuario, tiempo, identificador del proceso y linea de comandos usada
+sin opciones, ps sólo muestra los procesos lanzados desde el terminal actual y con el mismo EUID que el usuario que lo lanzó
+
+Opciones de ps
+ps tiene un gran número de opciones, que se pueden especificar de 3 maneras:
+opciones UNIX: pueden agruparse y se preceden por un guión: ps -ef
+opciones BSD: pueden agruparse y van sin guión: ps uxa
+opciones largas GNU: precedidas de dos guiones: ps --user tomas
+Algunas opciones:
+-e o ax: muestra todos los procesos
+-u (o U o --user) usuario: muestra los procesos de un usuario
+u: salida en formato usuario
+j: salida en formato job (muestra PID, PPID, etc.)
+-f o l: salida en formato largo
+f: muestra un árbol con la jerarquía de procesos
+k (o --sort) campo: ordena la salida por algún campo (p.e. ps uxak rss)
+-o (o o o --format) formato: permite definir el formato de salida ps -o ruser,pid,comm=Comando
+
+
+usuario_local@pto0519:~/Descargas/ASOR_5-A/Practica2.3$ ps
+    PID TTY          TIME CMD
+ 166075 pts/4    00:00:00 bash
+ 177885 pts/4    00:00:00 ps
+
+usuario_local@pto0519:~/Descargas/ASOR_5-A/Practica2.3$ ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1555  166075  109369  0  80   0 -  3537 do_wai pts/4    00:00:00 bash
+4 R  1555  177988  166075  0  80   0 -  3841 -      pts/4    00:00:00 ps
