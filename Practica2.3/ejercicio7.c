@@ -22,3 +22,9 @@ int main (int argc, char *argv[]){
     else printf("El comando terminó de ejecutarse\n");
     return 0;
 }
+
+/*
+Cuando execve ejecuta correctamen, no muestra el mensaje "El comando terminó de ejecutarse\n", 
+porque el proceso está reemplazado por otro nuevo, no seguirá ejecutando después de execve.
+Ejecuta el mensaje cuando execve devuelve -1, es decir, ha tenido error en la ejecución de execve
+*/
