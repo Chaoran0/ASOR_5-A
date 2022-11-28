@@ -12,9 +12,9 @@ int main (int argc, char *argv[]){
         exit(1);
     }
 
-    char *newargv[] = {"/bin/ls", "-l", NULL};
-    char *envp[] = {NULL};
-    //if(execve("/bin/ls", newargv, NULL) == -1){
+    //char *newargv[] = {"/bin/ps", argv[1], NULL};
+    //char *envp[] = {NULL};
+    //if(execve("/bin/ps", newargv, NULL) == -1){
     if(execve(argv[1], argv+1, NULL) == -1){
         perror("Error execve: ");
         exit(1);
@@ -27,4 +27,6 @@ int main (int argc, char *argv[]){
 Cuando execve ejecuta correctamen, no muestra el mensaje "El comando terminó de ejecutarse\n", 
 porque el proceso está reemplazado por otro nuevo, no seguirá ejecutando después de execve.
 Ejecuta el mensaje cuando execve devuelve -1, es decir, ha tenido error en la ejecución de execve
+
+Hay que poner "" para leer el comando ps -el juntos, sino solo lee uno.
 */
