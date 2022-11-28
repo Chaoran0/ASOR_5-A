@@ -12,17 +12,16 @@ int main (int argc, char *argv[]){
         exit(1);
     }
 
-    //char *newargv[] = {"/bin/ps", argv[1], NULL};
+    char *newargv[] = {"/bin/ps", argv[1], NULL};
     //char *envp[] = {NULL};
-    //if(execve("/bin/ps", newargv, NULL) == -1){
-    if(execve(argv[1], argv+1, NULL) == -1){
+    if(execve("/bin/ps", newargv, NULL) == -1){
+    //if(execve(argv[1], argv+1, NULL) == -1){
         perror("Error execve: ");
         exit(1);
     }
     else printf("El comando terminó de ejecutarse\n");
     return 0;
 }
-
 /*
 Cuando execve ejecuta correctamen, no muestra el mensaje "El comando terminó de ejecutarse\n", 
 porque el proceso está reemplazado por otro nuevo, no seguirá ejecutando después de execve.
