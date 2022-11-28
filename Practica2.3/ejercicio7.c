@@ -11,10 +11,7 @@ int main (int argc, char *argv[]){
         printf("ERROR: Introduce el comando.\n");
         exit(1);
     }
-
-    char *newargv[] = {argv[1], NULL};
-    //char *envp[] = {NULL};
-    if(execve("/bin/ps", newargv, NULL) == -1){
+    if(execvp(argv[1], argv+1) == -1){
     //if(execve(argv[1], argv+1, NULL) == -1){
         perror("Error execve: ");
         exit(1);
@@ -27,5 +24,5 @@ Cuando execve ejecuta correctamen, no muestra el mensaje "El comando terminó de
 porque el proceso está reemplazado por otro nuevo, no seguirá ejecutando después de execve.
 Ejecuta el mensaje cuando execve devuelve -1, es decir, ha tenido error en la ejecución de execve
 
-Hay que poner "" para leer el comando ps -el juntos, sino solo lee uno.
+No hay que poner "", porque recibe argv[1] como path y argv[2] como proceso a ejecutar
 */
