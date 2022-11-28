@@ -1,0 +1,13 @@
+CMD1:
+  usuario_vms@portatil:~/Descargas$ sleep 600
+    kdflshjff
+    Terminado (killed)
+  usuario_vms@portatil:~/Descargas$ kdflshjff
+    kdflshjff: orden no encontrada
+  usuario_vms@portatil:~/Descargas$ 
+
+CMD2:
+  usuario_vms@portatil:~/Descargas$ echo "hola mundo"
+    hola mundo
+  usuario_vms@portatil:~/Descargas$ pkill -9 sleep
+
