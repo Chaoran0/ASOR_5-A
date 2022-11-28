@@ -1,6 +1,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <sched.h>
+
+
 
 int main (int argc, char *argv[]){
     //int nice(int inc);
@@ -9,8 +12,34 @@ int main (int argc, char *argv[]){
         printf("Argument failed\n");
         exit(1);
     }
-    int sol = nice(argv[1]);
-    printf("El valor de nice es: %d\n", sol);
+    //int atoi(const char *nptr);
+    int pid = atoi (argv[1]);
+    int sched = sched_getscheduler(pid);
+    switch(sched){
+        case SCHED_OTHER:
+            printf("SCHEDULER OTHER\n");
+        break;
+        case SCHED_FIFO:
+            printf("SCHEDULER FIFO\n");
+        break;
+        case SCHED_RR:
+            printf("SCHEDULER RR\n");
+        break;
+        default:
+            printf("ERROR\n");
+    }
+
+    struct sched_param p;//no se puede pasar un puntero sin inicializar(*p), pero si reservas en pila si se puede
+    int param = sched_getparam(pid, &p);
+    if(param == -1)
+        printf("ERROR\n");
+    else
+        printf("Prioridad %d\n", p.sched_priority);
+    
+    int max = sched_get_priority_max(sched);
+    int min = sched_get_priority_min(sched);
+    printf("Prioridad máxima: %d\nPrioridad mínima: %d\n", max, min);
+    
 
     return 0;
 }
