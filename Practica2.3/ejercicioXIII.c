@@ -18,9 +18,8 @@ int main(int argc, char *argv[]) {
   }
 
   struct sigaction act;
-  //Sigint
   sigaction(SIGUSR1, NULL, &act); //Get handler
-  act.sa_handler = sighandler;
+  act.sa_handler = &sighandler;
   sigaction(SIGUSR1, &act, NULL); //Set sa_handler
 
   printf("Se va a borrar el fichero %s después de %d segundos. Envía SIGUSR1 para detener.\n", argv[0], secs);
