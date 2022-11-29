@@ -26,11 +26,11 @@ int main(int argc, char *argv[]) {
   
   //act.sa_flags = 0;
   sigaction(SIGINT, NULL, &act);
-  act.sa_handler = sighandler;
+  act.sa_handler = &sighandler;
   sigaction(SIGINT, &act, NULL);
 
   sigaction(SIGTSTP, NULL, &act);
-  act.sa_handler = sighandler;
+  act.sa_handler = &sighandler;
   sigaction(SIGTSTP, &act, NULL);
 
   while((INTcount + TSTPcount) < 10);
