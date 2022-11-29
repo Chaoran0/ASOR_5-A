@@ -4,10 +4,10 @@
 #include <unistd.h>
 #include <signal.h>
 
-volatile bool stop;
+volatile int stop = 0;
 
 void sighandler (int signo){
-    if(signo == SIGUSR1) stop = true;
+    if(signo == SIGUSR1) stop = 1;
 }
 
 int main(int argc, char *argv[]) {
@@ -23,11 +23,16 @@ int main(int argc, char *argv[]) {
   act.sa_handler = &sighandler;
   sigaction(SIGUSR1, &act, NULL); //Set sa_handler
 
+  printf("Se va a borrar el fichero %s después de %d segundos. Envía SIGSR1 para detener.\n", argv[0], secs);
+
   int i = 0;
+  
 	while (i < secs && stop == 0) {
     i++;
     sleep(1);
+    alarm(secs-i);
   }
+  
 
   if (stop == 0) {
     printf("Se va a borrar");
