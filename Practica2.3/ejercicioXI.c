@@ -4,11 +4,13 @@
 #include <unistd.h>
 #include <signal.h>
 
-//ALGO FALLA CON EL SIG_BLOCK Y SIG_UNBLOCK?
+
 int main(int argc, char *argv[]) {
 
-
   sigset_t set;
+
+  //export SLEEP_SECS=100 ó usar int setenv(const char *name, const char *value, int overwrite); para poner la variable de entorno
+  setenv("SLEEP_SECS", "5", 1); //Nombre: SLEEP_SECS  Valor: 5  Sobreescribir: Sí
 
   sigemptyset(&set);//inicializa un conjunto como vacío, excluyendo todas las señales
   sigaddset(&set, SIGINT);//añade una señal a un conjunto
