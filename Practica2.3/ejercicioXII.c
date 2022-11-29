@@ -23,24 +23,18 @@ int main(int argc, char *argv[]) {
        */
 
   struct sigaction act;
+  act.sa_flags = 0;
   if(sigaction(SIGINT, NULL, &act) != -1){
         act.sa_handler = sighandler;
-        printf("Señal SIGINT recibido. Numero total recibido: %d\n", INTcount);
   }
   sigaction(SIGINT, &act, NULL);
 
   if(sigaction(SIGTSTP, NULL, &act) != -1){
         act.sa_handler = sighandler;
-        printf("Señal SIGINT recibido. Numero total recibido: %d\n", TSTPcount);
   }
   sigaction(SIGTSTP, &act, NULL);
 
-  sigset_t set;
-  sigemptyset(&set);
-  while(INTcount + TSTPcount < 10){
-    //int sigsuspend(const sigset_t *set);
-    sigsuspend(&set);
-  }
+  while(INTcount + TSTPcount < 10);
     printf("Señal SIGINT . Numero total recibido: %d\n", INTcount);
     printf("Señal SIGISTP. Numero total recibido: %d\n", TSTPcount);
 
