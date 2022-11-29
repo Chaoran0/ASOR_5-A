@@ -23,18 +23,22 @@ int main(int argc, char *argv[]) {
        */
 
   struct sigaction act;
+  act.sa_handler = sighandler;
   act.sa_flags = 0;
-  if(sigaction(SIGINT, NULL, &act) != -1){
-        act.sa_handler = sighandler;
+  if(sigaction(SIGINT, NULL, &act) == -1){
+        perror("sigaction SIGINT failed\n");
+        exit(-1);
   }
-  sigaction(SIGINT, &act, NULL);
+  //sigaction(SIGINT, &act, NULL);
 
-  if(sigaction(SIGTSTP, NULL, &act) != -1){
-        act.sa_handler = sighandler;
+  if(sigaction(SIGTSTP, NULL, &act) == -1){
+        perror("sigaction SIGINT failed\n");
+        exit(-1);
   }
-  sigaction(SIGTSTP, &act, NULL);
+  //sigaction(SIGTSTP, &act, NULL);
 
-  while(INTcount + TSTPcount < 10);
+  while((INTcount + TSTPcount) < 10);
+
     printf("Señal SIGINT . Numero total recibido: %d\n", INTcount);
     printf("Señal SIGISTP. Numero total recibido: %d\n", TSTPcount);
 
