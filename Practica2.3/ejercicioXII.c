@@ -25,19 +25,13 @@ int main(int argc, char *argv[]) {
   struct sigaction act;
   
   //act.sa_flags = 0;
-  if(sigaction(SIGINT, NULL, &act) == -1){
-        perror("sigaction SIGINT failed\n");
-        exit(-1);
-  }
-  else act.sa_handler = sighandler;
-  //sigaction(SIGINT, &act, NULL);
+  sigaction(SIGINT, NULL, &act);
+  act.sa_handler = sighandler;
+  sigaction(SIGINT, &act, NULL);
 
-  if(sigaction(SIGTSTP, NULL, &act) == -1){
-        perror("sigaction SIGINT failed\n");
-        exit(-1);
-  }
-  else act.sa_handler = sighandler;
-  //sigaction(SIGTSTP, &act, NULL);
+  sigaction(SIGTSTP, NULL, &act);
+  act.sa_handler = sighandler;
+  sigaction(SIGTSTP, &act, NULL);
 
   while((INTcount + TSTPcount) < 10);
 
