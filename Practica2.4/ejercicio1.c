@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int main (int argc, char *argv[]){
     //int pipe(int fd[2]);
@@ -33,6 +35,9 @@ int main (int argc, char *argv[]){
             close(fd[1]);//importante!!!!!
             dup2(fd[0],0);
             close(fd[0]);
+            //int execlp(const char *file, const char *arg, .../* (char  *) NULL */);
+            //comando1 argumento1 | comando2 argumento2
+            execlp(argv[3], argv[3], argv[4], NULL);
         break;
     }
 
