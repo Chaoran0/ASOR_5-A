@@ -1,0 +1,31 @@
+usuario_vms@portatil:~/Descargas$ mkfifo -m 0777 ej4.txt
+usuario_vms@portatil:~/Descargas$ ls -l
+total 24
+-rwxr-xr-x 1 usuario_vms users 16384 dic  5 19:16 ej
+prwxrwxrwx 1 usuario_vms users     0 dic  5 19:28 ej4.txt
+-rw-r--r-- 1 usuario_vms users  1675 dic  5 19:14 ej.c
+-rw-r--r-- 1 usuario_vms users  1907 dic  5 15:58 Malware.txt
+
+usuario_vms@portatil:~/Descargas$ stat ej4.txt
+  Fichero: ej4.txt
+  Tamaño: 0         	Bloques: 0          Bloque E/S: 4096   `fifo'
+Dispositivo: 10309h/66313d	Nodo-i: 529145      Enlaces: 1
+Acceso: (0777/prwxrwxrwx)  Uid: ( 1565/usuario_vms)   Gid: (  100/   users)
+Acceso: 2022-12-05 19:28:33.828458811 +0100
+Modificación: 2022-12-05 19:28:33.828458811 +0100
+      Cambio: 2022-12-05 19:28:33.828458811 +0100
+    Creación: 2022-12-05 19:28:33.828458811 +0100
+
+usuario_vms@portatil:~/Descargas$ echo "Hola mundo" > ej4.txt
+
+^C
+usuario_vms@portatil:~/Descargas$ echo < ej4.txt
+
+^C
+usuario_vms@portatil:~/Descargas$ cat ej4.txt
+
+^C
+usuario_vms@portatil:~/Descargas$ 
+
+
+echo y cat no funcionan correctamente
