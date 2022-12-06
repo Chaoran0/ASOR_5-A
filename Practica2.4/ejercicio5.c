@@ -35,7 +35,7 @@ int main(int argcc, char **argv){
        void FD_ZERO(fd_set *set);*/
     fd_set rpipes;
     int rc, actualpipe;
-    char tubName;
+    int tub;
     while(rc != -1){
         FD_ZERO(&rpipes);//inicializa un conjunto como conjunto vacío
         FD_SET(pipe1, &rpipes);//añade un pipe1 al conjunto rpipes
@@ -45,11 +45,11 @@ int main(int argcc, char **argv){
 
         if(FD_ISSET(pipe1, &rpipes)){
             actualpipe = pipe1;
-            strcpy(tubName, tub1);
+            tub = 1;
         }
         else if(FD_ISSET(pipe2, &rpipes)){
             actualpipe = pipe2;
-            strcpy(tubName, tub2);
+            tub = 2;
             
         }
         ssize_t readsize = 256;
@@ -65,11 +65,25 @@ int main(int argcc, char **argv){
             }
 
             buffer[readsize] = '\0';
-            printf("Tuberia %s: %s", tubName, buffer);
+            printf("Tuberia %d: %s", tub, buffer);
         }
 
-        
-
+        if(tub == 1 && readsize != 256){
+            close(pipe1);
+            pipe1 = open(tub1, O_RDONLY | O_NONBLOCK);
+            if(pipe1 == -1){
+                perror("Error: open failed. \n");
+                exit(-1);
+            }
+        }
+        else if(tub == 2 && readsize != 256){
+            close(pipe2);
+            pipe2 = open(tub2, O_RDONLY | O_NONBLOCK);
+            if(pipe2 == -1){
+                perror("Error: open failed. \n");
+                exit(-1);
+            }
+        }
     }
 
 
