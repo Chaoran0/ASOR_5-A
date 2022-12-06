@@ -28,7 +28,7 @@ int main(int argc, char **argv){
     else printf("Open saccessed\n");
     char buf[3];
     scanf("Write commands here: %s", buf);
-	write(fd, buf, 2);
+	write(fd, buf, 3);
 	close(fd);
 
 
