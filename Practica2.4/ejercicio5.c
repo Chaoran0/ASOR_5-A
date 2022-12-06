@@ -9,8 +9,8 @@
 #include <string.h>
 
 int main(int argcc, char **argv){
-    char tub1 = "tub1";
-    char tub2 = "tub2";
+    char *tub1 = "tub1";
+    char *tub2 = "tub2";
     char buffer[256];
     if(mkfifo("tub1", 0777) == -1){
         perror("Error: mkfifo failed. \n");
