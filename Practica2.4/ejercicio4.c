@@ -15,15 +15,23 @@ int main(int argc, char **argv){
 
     //int mkfifo(const char *filename, mode_t mode);
     int fifo = mkfifo(argv[1], 0777);
+    if(fifo == -1){
+        perror("Error: mkfifo failed.\n");
+        exit(-1);
+    }
+    else printf("mkfifo saccessed\n");
     int fd = open(argv[1], O_WRONLY);
-    char buf[256];
-    scanf("%s", buf);
-	write(fd, buf, strlen(argv[1]));
-
+    if(fd == -1){
+        perror("Error: open failed.\n");
+        exit(-1);
+    }
+    else printf("Open saccessed\n");
+    char buf[3];
+    scanf("Write commands here: %s", buf);
+	write(fd, buf, 2);
 	close(fd);
 
 
 
     return 0;
 }
-
