@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <sys/select.h>
+#include <string.h>
 
 int main(int argcc, char **argv){
     char tub1 = "tub1";
@@ -33,15 +34,41 @@ int main(int argcc, char **argv){
        void FD_SET(int fd, fd_set *set);
        void FD_ZERO(fd_set *set);*/
     fd_set rpipes;
-    while(1){
+    int rc, actualpipe;
+    char tubName;
+    while(rc != -1){
         FD_ZERO(&rpipes);//inicializa un conjunto como conjunto vacío
         FD_SET(pipe1, &rpipes);//añade un pipe1 al conjunto rpipes
         FD_SET(pipe2, &rpipes);//añade un pipe2 al conjunto rpipes
 
-        int rc = select((pipe1 < pipe2) ? pipe2 + 1 : pipe1 + 1, &rpipes, NULL, NULL, NULL);
+        rc = select((pipe1 < pipe2) ? pipe2 + 1 : pipe1 + 1, &rpipes, NULL, NULL, NULL);
 
+        if(FD_ISSET(pipe1, &rpipes)){
+            actualpipe = pipe1;
+            strcpy(tubName, tub1);
+        }
+        else if(FD_ISSET(pipe2, &rpipes)){
+            actualpipe = pipe2;
+            strcpy(tubName, tub2);
+            
+        }
+        ssize_t readsize = 256;
+        while (readsize == 256) {
 
+            readsize = read(actualpipe, buffer, 256);
 
+            if (readsize == -1) {
+                perror("Error: Read failed.\n");
+                close(pipe1);
+                close(pipe2);
+                exit(-1);
+            }
+
+            buffer[readsize] = '\0';
+            printf("Tuberia %s: %s", tubName, buffer);
+        }
+
+        
 
     }
 
