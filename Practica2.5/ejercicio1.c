@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 int main (int argc, char **argv) {
-	struct addrinfo hints;
+	struct addrinfo hints:
 	struct addrinfo *res, *ptr;
   
   if (argc != 2) {
@@ -16,14 +16,8 @@ int main (int argc, char **argv) {
    }
 	
 	memset(&hints, 0, sizeof(struct addrinfo));
-	
-	hints.ai_family = AF_UNSPEC;    /* Allow IPv4 or IPv6 */
-  hints.ai_socktype = 0;
-  hints.ai_flags = AI_PASSIVE; //NI_NUMERICHOST   /* For wildcard IP address */
-  hints.ai_protocol = 0;          /* Any protocol */
-  hints.ai_canonname = NULL;
-  hints.ai_addr = NULL;
-  hints.ai_next = NULL;
+	/*Specifying hints as NULL is equivalent to setting ai_socktype and ai_protocol to 0; ai_family to AF_UNSPEC; and ai_flags to (AI_V4MAPPED | AI_ADDRCONFIG).*/
+    hints.ai_flags = AI_PASSIVE; //NI_NUMERICHOST   /* For wildcard IP address */
 
 	int rc = getaddrinfo(argv[1], NULL, &hints, &res);
 
