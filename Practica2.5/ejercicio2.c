@@ -6,6 +6,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#include <time.h>
+#include <sys/time.h>
+#include <arpa/inet.h>
+
 
 int main (int argc, char **argv) {
     struct addrinfo hints;
@@ -33,42 +37,37 @@ int main (int argc, char **argv) {
 		exit(-1);
 	}
 
-    setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, "1", sizeof(int));
-	setsockopt(sd, IPPROTO_IPV6, IPV6_V6ONLY, "0", sizeof(int));
-
 	if (bind(sd, (struct sockaddr *)result->ai_addr, result->ai_addrlen)) {
 		perror("Error: bind failed\n");
 		exit(-1);
 	}
     freeaddrinfo(result);
 
-    char buf[2] = {"", "", ""};//t, d, q
+    char buf[2] = "";//t, d, q
     struct sockaddr_storage input_addr;
 	socklen_t input_len = sizeof(input_addr);
     
     while (buf[0] != 'q') {
         int c = recvfrom(sd, &buf, 2*sizeof(char), 0, (struct sockaddr *) &input_addr, &input_len);
-        printf("Recibidos %d bytes de %s:%s\n", c, host, serv);
-        sendto(sd, buf, c, 0, (struct sockaddr *) &addr, addrlen);
         if (c == -1) {
-            perror("Error ocurred while reciving");
+            perror("Error: recvfrom\n");
             close(sd);
-            return -1;
+            exit(-1);
         }
         else if (c == 0) {
-            printf("Client has performed a shutdown\n");
+            printf("Termina el proceso servidor\n");
             buf[0] = 'q';
         }
         else {
-            char hostname[NI_MAXHOST];
-            char port[NI_MAXSERV];
-
-            if (getnameinfo((struct sockaddr *)&input_addr, input_len, hostname, NI_MAXHOST, port, NI_MAXSERV, 0)) {
-                perror("Error getting info from name");
-                return -1;
+            char host[NI_MAXHOST];
+            char serv[NI_MAXSERV];
+		
+            if (getnameinfo((struct sockaddr *)&input_addr, input_len, host, NI_MAXHOST, serv, NI_MAXSERV, 0)) {
+                perror("Error: getnameinfo failed\n");
+                exit(-1);
             }
 
-            printf("Recibí %i bytes de %s:%s\n", c, hostname, port);
+            printf("Recibí %i bytes de %s:%s\n", c, host, serv);
 
             if (buf[0] == 'd') {
                 time_t t;
@@ -80,8 +79,8 @@ int main (int argc, char **argv) {
     
                 int writesize = sendto(sd, buffer, strlen(buffer), 0, (struct sockaddr *)&input_addr, input_len);
                 if (writesize == -1) {
-                    perror("Error while sending back to client");
-                    return -1;
+                    perror("Error: sendto failed\n");
+                    exit(-1);
                 }
             } else if(buf[0] == 't') {
                 time_t t;
@@ -93,13 +92,13 @@ int main (int argc, char **argv) {
     
                 int writesize = sendto(sd, buffer, strlen(buffer), 0, (struct sockaddr *)&input_addr, input_len);
                 if (writesize == -1) {
-                    perror("Error while sending back to client");
-                    return -1;
+                    perror("Error: sendto failed\n");
+                    exit(-1);
                 }
             } else if (buf[0] == 'q')
-                printf("Comando de finalización recibido, saliendo…\n");
+                printf("Termina el proceso servidor\n");
             else
-                printf("Comando no soportado %s", buf);
+                printf("Command not exist: %s", buf);
             
         }
 	}
