@@ -13,7 +13,7 @@
 
 int main (int argc, char **argv) {
     struct addrinfo hints;
-    if(argc != 3){
+    if(argc != 2){
         printf("Error: argumento insuficiente\n");
         exit(-1);
     }
