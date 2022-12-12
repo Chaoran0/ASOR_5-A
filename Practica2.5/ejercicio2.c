@@ -22,7 +22,7 @@ int main (int argc, char **argv) {
 
     /*Specifying hints as NULL is equivalent to setting ai_socktype and ai_protocol to 0; ai_family to AF_UNSPEC; and ai_flags to (AI_V4MAPPED | AI_ADDRCONFIG).*/
     hints.ai_flags    = 0;
-    hints.ai_family   = AF_UNSPEC;   // IPv4 o IPv6
+    hints.ai_family   = AF_UNSPEC;   // IPv4 o IzPv6
     hints.ai_socktype = SOCK_DGRAM;
     struct addrinfo *result;
 	int rc = getaddrinfo(argv[1], argv[2], &hints, &result);
@@ -108,4 +108,3 @@ int main (int argc, char **argv) {
 
     return 0;
 }
-
