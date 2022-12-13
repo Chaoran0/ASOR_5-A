@@ -105,3 +105,28 @@ int main (int argc, char **argv) {
 
     return 0;
 }
+
+/*
+usuario_local@portatil:~/Descargas$ ./ej :: 3000
+Recibí 2 bytes de ip6-localhost:46478
+Recibí 1 bytes de ip6-localhost:46478
+Command not exist: 
+
+46478
+Recibí 2 bytes de ip6-localhost:46478
+Recibí 1 bytes de ip6-localhost:46478
+Command not exist: 
+
+46478
+Recibí 2 bytes de ip6-localhost:46478
+Termina el proceso servidor
+
+usuario_local@portatil:~/Descargas$ nc -u :: 3000
+t
+12:09:24 PM
+d
+2022-12-13
+q
+
+
+*/
