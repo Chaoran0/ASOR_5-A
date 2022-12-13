@@ -37,10 +37,7 @@ int main (int argc, char **argv) {
 		exit(-1);
 	}
 
-	if (bind(sd, (struct sockaddr *)result->ai_addr, result->ai_addrlen)) {
-		perror("Error: bind failed\n");
-		exit(-1);
-	}
+	bind(sd, (struct sockaddr *)result->ai_addr, result->ai_addrlen);
     freeaddrinfo(result);
 
     char buf[2] = "";//t, d, q
