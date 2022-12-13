@@ -64,7 +64,7 @@ int main (int argc, char **argv) {
                 exit(-1);
             }
 
-            printf("Recibí %i bytes de %s:%s\n", c, host, serv);
+            printf("%i bytes de %s:%s\n", c, host, serv);
 
             if (buf[0] == 'd') {
                 time_t t;
@@ -93,9 +93,9 @@ int main (int argc, char **argv) {
                     exit(-1);
                 }
             } else if (buf[0] == 'q')
-                printf("Termina el proceso servidor\n");
+                printf("Saliendo...\n");
             else
-                printf("Command not exist: %s", buf);
+                printf("Command not exist: %s\n", buf);
             
         }
 	}
