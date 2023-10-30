@@ -1,19 +1,19 @@
-#include <stdio.h>
-#include <sys/types.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <sys/utsname.h>
-#include <stdlib.h>
 
-int main() {
-   //long fpathconf(int fd, int name);
-   //long pathconf(char *path, int name);
-  char *path = "/D";
-  printf("The maximum number of links to the file: %ld\n", pathconf(path, _PC_LINK_MAX));
-  printf("The maximum length of a relative pathname when path or fd is the current working directory: %ld\n", pathconf(path, _PC_PATH_MAX));
-  printf("The maximum length of a filename in the directory path or fd that the process is allowed to create: %ld\n", pathconf(path, _PC_NAME_MAX));
-  
-  return 0;
+
+int main(){
+	char* path = "../Descargas";
+	if(pathconf(path, _PC_LINK_MAX) != -1)
+		printf("El número máximo de enlaces: %ld\n", pathconf(path, _PC_LINK_MAX));
+	else 
+		printf("Error %d: %s\n", errno, strerror(errno));
+	printf("El tamaño máximo de una ruta: %ld\n", pathconf(path, _PC_PATH_MAX));
+	printf("El tamaño de un nombre de fichero: %ld\n\n", pathconf(path, _PC_NAME_MAX));
+
+	printf("Devuelve un valor no nulo si el cambio del propietario del fichero está restringido: %ld\n", pathconf(path, _PC_CHOWN_RESTRICTED));
+	printf("Número máximo de bytes que pueden escribirse atómicamente en la tubería: %ld\n", pathconf(path, _PC_PIPE_BUF));
+	return 0;
 }
-
