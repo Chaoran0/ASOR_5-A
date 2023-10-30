@@ -1,18 +1,16 @@
-#include <stdio.h>
-#include <sys/types.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <sys/utsname.h>
-#include <stdlib.h>
 
 
-int main() {
-   //long sysconf(int name);
+int main(){
+	printf("Longitud máxima de los argumentos: %ld\n", sysconf(_SC_ARG_MAX));
+	printf("El número máximo de hijos y : %ld\n", sysconf(_SC_CHILD_MAX));
+	printf("El número máximo de ficheros abiertos: %ld\n\n", sysconf(_SC_OPEN_MAX));
 
-  printf("The maximum length of the arguments: %ld\n", sysconf(_SC_ARG_MAX));
-  printf("The maximum number of simultaneous processes per user ID: %ld\n", sysconf(_SC_CHILD_MAX));
-  printf("The maximum number of files that a process can have open at any time: %ld\n", sysconf(_SC_OPEN_MAX));
- 
-  return 0; 
+	printf("Número de ticks de reloj por segundo (Hz): %ld\n", sysconf(_SC_CLK_TCK));
+	printf("Tamaño de página en bytes: %ld\n", sysconf(_SC_PAGESIZE));
+	return 0;
 }
+
