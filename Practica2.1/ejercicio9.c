@@ -6,21 +6,43 @@ el proceso adquiera los permisos del propietario del fichero ejecutado.
 Podríamos asegurarlo en el momento que sea ejecutado por otro usuario que no sea su dueño. Si el bit está activo indica que el usuario efectivo es el dueño.
 */
 
-#include <stdio.h>
-#include <sys/types.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <sys/utsname.h>
-#include <stdlib.h>
 
-int main() {
-   // getuid devuelve el identificador de usuario real del proceso actual.
-   // geteuid devuelve el identificador de usuario efectivo del proceso actual.
-  printf("UID: %d\n", getuid());
-  printf("EUID: %d\n", geteuid());
-  if (geteuid() != getuid())
-	  printf("bit setuid: Activado \n");
-  
-  return 0;
+
+int main(){
+	if(getuid() != -1)
+		printf("UID real: %d\n", getuid());
+	else 
+		printf("Error %d: %s\n", errno, strerror(errno));
+	
+	if(getuid() != -1)
+		printf("UID efectivo: %d\n", geteuid());
+	else 
+		printf("Error %d: %s\n", errno, strerror(errno));
+		
+
+	if(getuid() != -1)
+		printf("GID real: %d\n", getgid());
+	else 
+		printf("Error %d: %s\n", errno, strerror(errno));
+
+	if(getuid() != -1)
+		printf("GID efectivo: %d\n", getegid());
+	else 
+		printf("Error %d: %s\n", errno, strerror(errno));
+
+	if(getuid() != geteuid())
+		printf("Bit setuid activo\n");
+	else 
+		printf("Bit setuid no activo\n");
+	if(getgid() != getegid())
+		printf("Bit setgid activo\n");
+	else 
+		printf("Bit setgid no activo\n");
+	return 0;
 }
+
