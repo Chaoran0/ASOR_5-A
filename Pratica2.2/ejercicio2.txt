@@ -5,3 +5,7 @@ total 52
 -rw-rw-rw- 1 codespace root          1 Nov 19 21:59 ejercicio2.txt
 -rwxrwxrwx 1 codespace codespace 19776 Nov 19 22:07 ejercicio5
 -rw-rw-rw- 1 codespace root        585 Nov 19 22:16 ejercicio5.c
+
+primer - significa - for File, d for Directory, l for Link
+
+1 siginifica the number of links or directories inside this directory.
