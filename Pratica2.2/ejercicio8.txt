@@ -1,6 +1,19 @@
 @Chaoran0 ➜ /workspaces/ASOR_5-A/Pratica2.2 (main ✗) $ stat -t prueba7.txt
 prueba7.txt 0 0 81ff 1000 1000 700 1443079 1 0 0 1668963887 1668963887 1668963887 0 4096
 
+usuario_vms@pto0515:~/Descargas$ stat -f ejer.c
+  Fichero: "ejer.c"
+    ID: 4f876f450ded8cc6 Longnombre: 255     Tipo: ext2/ext3
+Tam. bloque: 4096       Tam. bloque fundamental: 4096
+Bloques: Total: 38427281   Libres: 24991208   Disponibles: 23021066
+Nodos-i: Total: 9830400    Libres: 9561229
+
+usuario_vms@pto0515:~/Descargas$ ls -i
+7215184 ejer5  7215191 ejerA                      7215196 prueb6.txt
+7215187 ejer6  7215185 ejer.c                     7215194 prueba6
+7215189 ejer7  7215192 github-recovery-codes.txt  7215193 prueba6.txt
+7215190 ejer9  7215197 prueb6
+
 
 NAME
        stat - display file or file system status
