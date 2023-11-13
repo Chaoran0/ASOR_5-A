@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 
-    char* regular = (char *)malloc(sizeof(char)*(5 + strlen(argv[1])));//reservar memoria
+    char* regular = (char *)malloc(sizeof(char)*(5 + strlen(argv[1])));//reservar memoria, si no lo hago, producirá violación de segmento
     char* symbolic = (char *)malloc(sizeof(char)*(5 + strlen(argv[1])));
     strcpy(regular, argv[1]);//copiar el contenido de argv[1]
     strcpy(symbolic, argv[1]);
