@@ -69,3 +69,7 @@ F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
 0 S  1000    1476    1217  0  90  10 -  3372 do_wai pts/0    00:00:00 bash
 0 R  1000    1482    1476  0  90  10 -  3527 -      pts/0    00:00:00 ps
 
+root@ubuntu-jammy:~# chrt -p 1492
+pid 1492's current scheduling policy: SCHED_OTHER
+pid 1492's current scheduling priority: 0
+
