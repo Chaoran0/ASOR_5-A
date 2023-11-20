@@ -14,7 +14,8 @@ int main (int argc, char *argv[]){
     }
     //int atoi(const char *nptr);
     int pid = atoi (argv[1]);
-    struct sched_param sp = { .sched_priority = 12 }; 
+    struct sched_param sp;
+    sp.sched_priority = 12; 
     int ret = sched_setscheduler(pid, SCHED_FIFO, &sp);//a politica SCHED_FIFO y prioridad 12
     if(ret == -1){
         printf ("ERROR \n");
