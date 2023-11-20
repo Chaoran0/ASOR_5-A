@@ -19,7 +19,7 @@ int main (int argv, char *argc[]){
     else
         printf("Num Max de ficheros que se puede abrir: %ld\n", rlim.rlim_max);
 
-    //char *getcwd(char *buffer, size_t size);
+    //char *getcwd(char *buffer, size_t size); Obtener la ruta absoluta del trabajo
     char buffer[2000];
     int size = 2000;
     printf("Size of buffer: %d\n", size);
