@@ -30,8 +30,8 @@ int main (int argc, char *argv[]){
             /*tanto execl como execv ignoran la variable PATH, que contiene las rutas de búsqueda. 
             Para tener en cuenta esta variable pueden usarse las versiones execlp o execvp. */
             //char *newargv[] = {argv[1], NULL};
-            dup2(fd, 2); //dup hace que el fichero no solo tenga un descriptor sino tambien otro que en este caso es 2
-            dup2(err, 1);
+            dup2(fd, 1); //dup hace que el fichero no solo tenga un descriptor sino tambien otro que en este caso es 2
+            dup2(err, 2);
             dup2(dn, 0);
             if (execvp(argv[1], argv+1) == -1) {
                 printf("ERROR execvp\n");
